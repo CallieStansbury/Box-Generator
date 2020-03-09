@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Boxform from './Components/Boxform';
+import Box from './Components/Box';
+
 
 function App() {
+  const [ formState, setFormState ] = useState([
+    { color: "purple", height:200, width:200},
+    { color: "green", height:200, width:200},
+    { color: "pink", height:200, width:200},
+    { color: "orange", height:200, width:200},
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Boxform formState={formState} setFormState={setFormState} />
+      <div className="Boxcontainer">
+        {formState.map((box, i) => (
+          <Box key={i} color={box.color} height={box.height} width={box.width} />
+        ))}
+      </div>
     </div>
   );
 }
-
 export default App;
